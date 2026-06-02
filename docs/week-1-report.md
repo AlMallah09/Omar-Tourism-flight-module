@@ -1,32 +1,33 @@
 # Week 1 Report
 
-## Objective
-
-The objective of Week 1 was to establish the project foundation for the Flight Booking System internship project.
-
 ## Activities Completed
 
-* Created GitHub repository.
-* Configured Visual Studio Code.
-* Installed Node.js and npm.
-* Created the backend project structure.
-* Installed Express.js.
-* Developed and tested the first backend server.
-* Created project documentation structure.
-* Configured Git and GitHub integration.
-* Added .gitignore and cleaned repository structure.
+* Configured source control repository.
+* Prepared development environment.
+* Installed required development tools.
+* Established backend project structure.
+* Created technical documentation structure.
+* Prepared system architecture documentation.
+* Prepared database planning documentation.
+* Prepared API planning documentation.
+* Prepared security and backup planning documentation.
 
-## Outcome
+## Deliverables
 
-A working backend development environment was successfully established and documented. The project repository is organized and ready for system design and future development.
+* Backend environment ready.
+* Repository structure established.
+* Technical documentation completed.
+* Initial architecture and database planning completed.
 
-## Next Week Plan
+## Pending Items
 
-* Design the database schema.
-* Finalize API structure.
-* Set up PostgreSQL.
-* Begin backend implementation.
+* Review existing website infrastructure.
+* Confirm existing backend and database systems.
+* Begin database implementation and backend development.
 
-## Current System Assumption
+## Next Steps
 
-The company has an existing website. However, the current backend, database, and API structure are not yet confirmed. The project will initially be planned as a standalone flight module backend that can later be connected to the existing website and mobile application.
+* Database implementation.
+* Backend architecture refinement.
+* API development.
+* Infrastructure analysis.

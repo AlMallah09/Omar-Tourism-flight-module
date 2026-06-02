@@ -1,8 +1,10 @@
-# System Architecture
+# System Architecture Analysis
 
-## Overview
+## Purpose
 
-The Flight Booking System will use a centralized backend architecture.
+This document describes the proposed architecture for supporting flight management and booking operations.
+
+The architecture is designed to support both web and mobile clients through a centralized backend service while maintaining scalability and maintainability.
 
 ### Components
 

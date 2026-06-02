@@ -1,4 +1,19 @@
-# Database Design
+# Database Analysis and Design
+
+## Purpose
+
+This document describes the proposed database structure required to support flight management and booking operations.
+
+The design focuses on data integrity, scalability, maintainability, and future expansion.
+
+## Core Entities
+
+* Users
+* Flights
+* Bookings
+
+Additional entities may be introduced as business requirements evolve.
+
 
 ## USERS
 

@@ -1,49 +1,37 @@
-# Internship Roadmap
+# Development Roadmap
 
-## Week 1
-Planning and Documentation
+## Phase 1
 
-## Week 2
-Backend Setup and Database Integration
+Analysis and Planning
 
-## Week 3
-Authentication System
+## Phase 2
 
-## Week 4
-Flight Management APIs
+Database and Backend Foundation
 
-## Week 5
-Booking System
+## Phase 3
 
-## Week 6
-Testing and API Refinement
+Authentication and User Management
 
-## Week 7
-Flutter Application Setup
+## Phase 4
 
-## Week 8
-Authentication Screens
+Flight Management Services
 
-## Week 9
-Flight Search Screens
+## Phase 5
 
-## Week 10
-Booking Screens
+Booking Services
 
-## Week 11
-Website Integration
+## Phase 6
 
-## Week 12
-Security Improvements
+Mobile Application Development
 
-## Week 13
-System Audits and Optimization
+## Phase 7
 
-## Week 14
-Backup Automation
+System Integration
 
-## Week 15
-Final Testing
+## Phase 8
 
-## Week 16
-Documentation and Presentation Preparation
+Security, Auditing, and Optimization
+
+## Phase 9
+
+Testing and Deployment Preparation
