@@ -26,3 +26,7 @@ A working backend development environment was successfully established and docum
 * Finalize API structure.
 * Set up PostgreSQL.
 * Begin backend implementation.
+
+## Current System Assumption
+
+The company has an existing website. However, the current backend, database, and API structure are not yet confirmed. The project will initially be planned as a standalone flight module backend that can later be connected to the existing website and mobile application.
