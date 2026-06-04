@@ -1,2 +1,19 @@
-node_modules/
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
 .env
+
+# Node.js old files
+node_modules/
+
+# Editor
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

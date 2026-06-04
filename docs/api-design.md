@@ -1,33 +1,45 @@
-# API Analysis and Preliminary Design
+# API Design
 
 ## Purpose
 
-This document records the initial API planning activities performed during Week 1.
+This document defines the initial API structure for the flight management and booking backend.
 
-The endpoints listed below represent a preliminary design and may be modified after reviewing existing company infrastructure and business requirements.
+The APIs will be built using Python FastAPI.
 
-## Authentication
+## Authentication APIs
 
-POST /auth/register
+POST /auth/register  
+POST /auth/login  
 
-POST /auth/login
+## User APIs
 
-## Flights
+GET /users/me  
+PUT /users/me  
 
-GET /flights
+## Flight APIs
 
-GET /flights/:id
+GET /flights  
+GET /flights/{flight_id}  
+POST /flights  
+PUT /flights/{flight_id}  
+DELETE /flights/{flight_id}  
 
-POST /flights
+## Booking APIs
 
-PUT /flights/:id
+POST /bookings  
+GET /bookings/my-bookings  
+GET /bookings/{booking_id}  
+PUT /bookings/{booking_id}/cancel  
 
-DELETE /flights/:id
+## Admin APIs
 
-## Bookings
+GET /admin/bookings  
+GET /admin/flights  
+GET /admin/reports  
 
-POST /bookings
+## Future Provider Integration APIs
 
-GET /bookings/user/:id
+GET /providers/flights/search  
+POST /providers/bookings/confirm  
 
-DELETE /bookings/:id
+These endpoints are planned for future integration with official third-party flight or hotel providers.

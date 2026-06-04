@@ -1,22 +1,31 @@
 # Development Log - Week 1
 
-## Activities
+## Activities Completed
 
-* Repository configuration
-* Development environment setup
-* Backend environment preparation
-* Documentation organization
-* Architecture planning
-* Database planning
-* API planning
-* Security planning
+- Created GitHub repository.
+- Configured development environment.
+- Created backend folder structure.
+- Created documentation folder structure.
+- Reviewed management feedback.
+- Confirmed existing website is WordPress with Traveler theme.
+- Confirmed there is no separate custom backend.
+- Confirmed there is no separate custom database.
+- Confirmed backend should be developed using Python.
+- Selected FastAPI as the backend framework.
+- Selected PostgreSQL as the database.
+- Planned mock/sample data approach for initial development.
+- Planned future third-party API integration.
 
-## Notes
+## Technical Notes
 
-The development environment is operational and the required planning documentation has been established.
+The previous Node.js/Express test server was only used as an early backend environment exercise.
+
+The confirmed backend direction is now Python with FastAPI.
 
 ## Next Actions
 
-* Review existing infrastructure.
-* Confirm system integration requirements.
-* Begin backend implementation activities.
+- Remove Node.js/Express backend files.
+- Create FastAPI backend structure.
+- Install Python dependencies.
+- Run the first FastAPI server.
+- Test automatic API documentation at /docs.

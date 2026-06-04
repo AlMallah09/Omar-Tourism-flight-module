@@ -1,15 +1,10 @@
 # Planned Features
 
-## Current Assumption
-
-The company currently has an existing website. The presence of an existing backend, database, or API has not yet been confirmed.
-
-For planning purposes, the Flight Booking System will be designed as a standalone backend service that can later be integrated with the existing website and a new mobile application.
-
 ## Core Features
 
-- User registration and login
-- JWT-based authentication
+- User registration
+- User login
+- JWT authentication
 - Role-based access control
 - Flight search
 - Flight details
@@ -18,27 +13,34 @@ For planning purposes, the Flight Booking System will be designed as a standalon
 - User booking history
 - Admin flight management
 
-## Advanced Features
+## Admin Features
 
-- Email booking confirmation
-- Payment integration
-- Revenue reports
-- Popular destination reports
-- Admin activity logs
-- Booking status tracking
+- Add flights
+- Update flights
+- Delete flights
+- View bookings
+- Manage availability
 
 ## Security Features
 
-- Password hashing using bcrypt
+- Password hashing
+- Protected routes
 - Input validation
-- Protected API routes
-- Rate limiting
-- Secure environment variables
+- Environment variables
+- Role-based access control
 
 ## Infrastructure Features
 
 - PostgreSQL database
-- Automated database backups
-- System audit logs
-- Performance monitoring
-- Scalable backend folder structure
+- API documentation through FastAPI
+- Backup planning
+- Audit logging
+- Scalable backend structure
+
+## Future Integration Features
+
+- Third-party flight API integration
+- Third-party hotel API integration
+- Real-time pricing
+- Real-time availability
+- Provider booking confirmation

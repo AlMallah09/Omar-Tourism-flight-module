@@ -1,37 +1,67 @@
 # Development Roadmap
 
-## Phase 1
+## Phase 1: Technical Foundation
 
-Analysis and Planning
+- Repository setup
+- Documentation setup
+- Confirm technology stack
+- Confirm system context
+- Prepare FastAPI backend structure
 
-## Phase 2
+## Phase 2: Backend Foundation
 
-Database and Backend Foundation
+- Create FastAPI project structure
+- Create first API endpoint
+- Configure environment variables
+- Configure PostgreSQL connection
 
-## Phase 3
+## Phase 3: Database Implementation
 
-Authentication and User Management
+- Create database tables
+- Define relationships
+- Add constraints
+- Add sample/mock flight data
 
-## Phase 4
+## Phase 4: Authentication
 
-Flight Management Services
+- Register users
+- Login users
+- Hash passwords
+- Generate JWT tokens
+- Protect routes
 
-## Phase 5
+## Phase 5: Flight APIs
 
-Booking Services
+- Create flights
+- Update flights
+- Delete flights
+- Search flights
+- View flight details
 
-## Phase 6
+## Phase 6: Booking APIs
 
-Mobile Application Development
+- Create bookings
+- Cancel bookings
+- View user bookings
+- Manage seat availability
 
-## Phase 7
+## Phase 7: Admin Functions
 
-System Integration
+- Admin flight management
+- Admin booking review
+- Basic reporting
+- Audit logging
 
-## Phase 8
+## Phase 8: Mobile Application
 
-Security, Auditing, and Optimization
+- Flutter setup
+- Login screens
+- Flight search screens
+- Booking screens
+- User bookings screen
 
-## Phase 9
+## Phase 9: Integration Preparation
 
-Testing and Deployment Preparation
+- Prepare API structure for WordPress or future website integration
+- Prepare provider integration layer
+- Document third-party API integration points

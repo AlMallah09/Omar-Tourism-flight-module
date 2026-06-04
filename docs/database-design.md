@@ -2,56 +2,88 @@
 
 ## Purpose
 
-This document describes the proposed database structure required to support flight management and booking operations.
+This document defines the preliminary database structure for the flight management and booking backend.
 
-The design focuses on data integrity, scalability, maintainability, and future expansion.
+The first version will use mock/sample flight data stored in PostgreSQL.
 
-## Core Entities
+## Main Tables
 
-* Users
-* Flights
-* Bookings
+### Users
 
-Additional entities may be introduced as business requirements evolve.
-
-
-## USERS
+Stores customer and admin account information.
 
 Fields:
+- user_id
+- full_name
+- email
+- password_hash
+- role
+- created_at
 
-* user_id
-* name
-* email
-* password_hash
-* role
-* created_at
+### Flights
 
-## FLIGHTS
-
-Fields:
-
-* flight_id
-* flight_number
-* origin
-* destination
-* departure_time
-* arrival_time
-* price
-* total_seats
-* available_seats
-
-## BOOKINGS
+Stores sample flight data.
 
 Fields:
+- flight_id
+- flight_number
+- airline_name
+- origin
+- destination
+- departure_time
+- arrival_time
+- price
+- total_seats
+- available_seats
+- status
 
-* booking_id
-* user_id
-* flight_id
-* booking_date
-* status
+### Bookings
+
+Stores user booking records.
+
+Fields:
+- booking_id
+- user_id
+- flight_id
+- booking_date
+- booking_status
+- total_price
+
+### Payments
+
+Stores payment-related information.
+
+Fields:
+- payment_id
+- booking_id
+- payment_method
+- payment_status
+- amount
+- payment_date
+
+### Audit Logs
+
+Stores important system actions.
+
+Fields:
+- log_id
+- user_id
+- action
+- table_affected
+- created_at
 
 ## Relationships
 
-* One User can have multiple Bookings.
-* One Flight can have multiple Bookings.
-* Each Booking belongs to one User and one Flight.
+- One user can have many bookings.
+- One flight can have many bookings.
+- One booking can have one payment.
+- One user can have many audit log records.
+
+## Data Integrity Rules
+
+- User email must be unique.
+- Flight number must be unique.
+- Available seats cannot be less than zero.
+- A booking must belong to an existing user.
+- A booking must belong to an existing flight.
+- A payment must belong to an existing booking.

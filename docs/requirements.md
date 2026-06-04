@@ -1,37 +1,38 @@
-# System Requirements
+# Requirements Analysis
 
-## Project Scope
-The system focuses only on the flight segment of the tourism company platform.
+## Scope
 
-## Main Users
+The scope is limited to the flight management and booking backend system.
 
-### Customer
-- View available flights
+The first version will use mock/sample data. Real-time flight pricing, availability, and confirmation will require future integration with official third-party APIs.
+
+## Customer Requirements
+
+Customers should be able to:
+- Register
+- Log in
 - Search flights
-- Book flights
-- View booking status
+- View flight details
+- Create bookings
+- View their bookings
+- Cancel bookings
 
-### Admin
+## Admin Requirements
+
+Admins should be able to:
 - Add flights
 - Update flights
 - Delete flights
 - View bookings
-- Manage flight availability
+- Manage availability
+- Review operational data
 
-## Functional Requirements
+## System Requirements
 
-1. The system shall allow users to view available flights.
-2. The system shall allow users to search flights by origin, destination, and date.
-3. The system shall allow users to register and log in.
-4. The system shall allow users to create flight bookings.
-5. The system shall allow users to view their bookings.
-6. The system shall allow admins to manage flight records.
-7. The system shall update available seats after booking.
-
-## Non-Functional Requirements
-
-1. The system should be secure.
-2. The system should be scalable.
-3. The system should provide fast API responses.
-4. The system should protect user data.
-5. The system should support future website and mobile app expansion.
+The system should:
+- Provide APIs for web and mobile clients.
+- Store data in PostgreSQL.
+- Use Python FastAPI.
+- Support mock data initially.
+- Be designed for future third-party API integration.
+- Keep the structure simple, practical, and manageable.
