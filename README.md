@@ -1,37 +1,155 @@
-# Flight Management and Booking Module
+# Omar Tourism Flight Management System
 
-## Overview
+## Project Overview
 
-This repository contains technical documentation, planning, and backend preparation work for the flight management and booking segment of Omar Tourism.
+This project is a professional flight management and booking backend developed for Omar Tourism as part of an internship and system modernization initiative.
 
-The system will be developed using Python and FastAPI. It will provide APIs that can be used by a future mobile application and can later be integrated with the existing WordPress website.
+The system is being built using FastAPI and PostgreSQL to provide a scalable backend that can support future mobile applications, web integrations, and third-party flight providers.
 
-## Confirmed System Context
+The current implementation uses sample/mock data and is designed to be extended later with real flight provider APIs.
 
-The existing company website is built using WordPress with the Traveler theme.
-
-Currently:
-- There is no separate custom backend.
-- There is no separate custom database.
-- Flight booking is handled through a third-party platform/service.
-- The exact third-party provider is still to be confirmed.
-
-## Development Direction
-
-The backend will first be built using mock/sample data, a database, admin-side management, booking flow, and API endpoints.
-
-Later, if an official flight or hotel provider is selected, the same backend structure can be extended to connect with the provider's API.
+---
 
 ## Technology Stack
 
-- Python
-- FastAPI
-- PostgreSQL
-- Flutter
-- GitHub
+### Backend
 
-## Repository Structure
+* Python
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* JWT Authentication
+* Bcrypt Password Hashing
 
-- backend/ → FastAPI backend implementation
-- docs/ → Technical documentation
-- diagrams/ → System diagrams
+### Tools
+
+* Swagger UI
+* GitHub
+* VS Code
+* Postman
+
+### Future Frontend
+
+* Flutter Mobile Application
+* Existing WordPress Traveler Website Integration
+
+---
+
+## Completed Phases
+
+### Phase 1 – Project Planning and Architecture
+
+* Requirements gathering
+* System architecture design
+* Technology stack selection
+* Project documentation
+* Development roadmap
+
+### Phase 2 – Backend Foundation
+
+* FastAPI setup
+* PostgreSQL integration
+* SQLAlchemy ORM
+* Flight database model
+* Flight CRUD endpoints
+* Swagger testing
+
+### Phase 3 – Booking Management
+
+* User module
+* Booking module
+* Flight-booking relationships
+* Seat availability management
+* Booking creation
+* Total price calculation
+* Booking cancellation
+* Seat restoration
+
+### Phase 4 – Authentication and Authorization
+
+* JWT authentication
+* Password hashing with bcrypt
+* Login endpoint
+* Protected routes
+* Current user extraction
+* User-specific bookings
+* Swagger authorization
+
+### Phase 5 – Passenger Management
+
+* Passenger database model
+* Passenger APIs
+* Passport information
+* Nationality tracking
+* Date of birth tracking
+* Ticket number generation
+* Passenger-booking relationships
+* Booking details endpoint
+* Ownership validation
+* Cancelled booking protection
+
+---
+
+## Current Project Structure
+
+```text
+backend/
+└── app/
+    ├── authentication/
+    ├── bookings/
+    ├── flights/
+    ├── passengers/
+    ├── users/
+    ├── db/
+    ├── core/
+    └── main.py
+```
+
+---
+
+## Security Features
+
+* JWT authentication
+* Password hashing
+* Protected endpoints
+* Ownership validation
+* Booking access restrictions
+* Passenger access restrictions
+
+---
+
+## Current Status
+
+Phase 5 Completed Successfully
+
+Implemented Modules:
+
+* Flights
+* Users
+* Authentication
+* Bookings
+* Passengers
+
+---
+
+## Next Phase
+
+Phase 6 – Booking Enhancements and Reservation Workflow
+
+Planned Features:
+
+* Multi-passenger booking support
+* Passenger validation improvements
+* Reservation lifecycle management
+* Advanced booking reporting
+* Additional security controls
+
+---
+
+## Author
+
+Ahmed Al Mallah
+
+Computer Engineering Student
+
+Omar Tourism Internship Project
