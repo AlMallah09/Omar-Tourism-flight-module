@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.bookings import models, schemas
 from app.flights.models import Flight
+from app.bookings.models import Booking
 
 
 def create_booking(db: Session, booking: schemas.BookingCreate, user_id: int):
@@ -62,6 +63,47 @@ def cancel_booking(db: Session, booking_id: int):
 
     flight.seats_available += booking.number_of_passengers
     booking.booking_status = "cancelled"
+
+    db.commit()
+    db.refresh(booking)
+
+    return booking
+
+def restore_booking(db: Session, booking_id: int):
+    booking = db.query(Booking).filter(
+        Booking.booking_id == booking_id
+    ).first()
+
+    if not booking:
+        raise HTTPException(
+            status_code=404,
+            detail="Booking not found"
+        )
+
+    if booking.booking_status != "cancelled":
+        raise HTTPException(
+            status_code=400,
+            detail="Booking is not cancelled"
+        )
+
+    flight = db.query(Flight).filter(
+        Flight.flight_id == booking.flight_id
+    ).first()
+
+    if not flight:
+        raise HTTPException(
+            status_code=404,
+            detail="Flight not found"
+        )
+
+    if flight.seats_available <= 0:
+        raise HTTPException(
+            status_code=400,
+            detail="No seats available to restore this booking"
+        )
+
+    booking.booking_status = "confirmed"
+    flight.seats_available -= 1
 
     db.commit()
     db.refresh(booking)

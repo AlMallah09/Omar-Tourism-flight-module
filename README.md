@@ -1,155 +1,132 @@
 # Omar Tourism Flight Management System
 
-## Project Overview
+A modern flight management backend built with **FastAPI** and **PostgreSQL**. The project is designed using a modular architecture that supports secure authentication, booking management, passenger management, and administrative operations while remaining scalable for future web and mobile integration.
 
-This project is a professional flight management and booking backend developed for Omar Tourism as part of an internship and system modernization initiative.
+---
 
-The system is being built using FastAPI and PostgreSQL to provide a scalable backend that can support future mobile applications, web integrations, and third-party flight providers.
+## Current Version
 
-The current implementation uses sample/mock data and is designed to be extended later with real flight provider APIs.
+**v0.6.1**
 
 ---
 
 ## Technology Stack
 
-### Backend
-
 * Python
 * FastAPI
-* SQLAlchemy
 * PostgreSQL
+* SQLAlchemy
+* Pydantic
 * JWT Authentication
 * Bcrypt Password Hashing
 
-### Tools
+---
 
-* Swagger UI
-* GitHub
-* VS Code
-* Postman
+## Project Status
 
-### Future Frontend
+### Completed
 
-* Flutter Mobile Application
-* Existing WordPress Traveler Website Integration
+* ✅ Phase 1 — Project Planning and System Architecture
+* ✅ Phase 2 — Backend Foundation and Flight Management
+* ✅ Phase 3 — Booking Management System
+* ✅ Phase 4 — Authentication and Authorization
+* ✅ Phase 5 — Passenger Management System
+* ✅ Phase 6.1 — Administration Foundation
+
+### Current Development
+
+**Phase 6.2 — Password and Security**
+
+Planned features include:
+
+* Change Password
+* Forgot Password
+* Administrator Password Reset
+* Forced Password Change
+* Failed Login Tracking
+* Account Lockout
+* Last Login Tracking
+* Additional Account Security Features
 
 ---
 
-## Completed Phases
+## Current Features
 
-### Phase 1 – Project Planning and Architecture
+### Flight Management
 
-* Requirements gathering
-* System architecture design
-* Technology stack selection
-* Project documentation
-* Development roadmap
-
-### Phase 2 – Backend Foundation
-
-* FastAPI setup
-* PostgreSQL integration
-* SQLAlchemy ORM
-* Flight database model
-* Flight CRUD endpoints
-* Swagger testing
-
-### Phase 3 – Booking Management
-
-* User module
-* Booking module
-* Flight-booking relationships
+* Flight CRUD operations
 * Seat availability management
-* Booking creation
-* Total price calculation
+* Flight pricing
+* Flight status management
+
+### Booking Management
+
+* Flight reservations
+* Automatic seat allocation
+* Automatic seat restoration
 * Booking cancellation
-* Seat restoration
+* Booking ownership validation
 
-### Phase 4 – Authentication and Authorization
+### Passenger Management
 
+* Passenger records
+* Booking-to-passenger relationships
+* Automatic ticket generation
+* Passenger ownership validation
+
+### Authentication
+
+* User registration
+* Secure login
 * JWT authentication
 * Password hashing with bcrypt
-* Login endpoint
-* Protected routes
-* Current user extraction
-* User-specific bookings
-* Swagger authorization
+* Protected API endpoints
 
-### Phase 5 – Passenger Management
+### Administration
 
-* Passenger database model
-* Passenger APIs
-* Passport information
-* Nationality tracking
-* Date of birth tracking
-* Ticket number generation
-* Passenger-booking relationships
-* Booking details endpoint
-* Ownership validation
-* Cancelled booking protection
+* Role-Based Access Control (RBAC)
+* User management
+* Booking management
+* Administrative dashboard
+* Dashboard statistics
+* Audit logging
+* Soft delete
+* Account enable and disable
+* User search
 
 ---
 
-## Current Project Structure
+## Project Structure
 
 ```text
-backend/
-└── app/
-    ├── authentication/
-    ├── bookings/
-    ├── flights/
-    ├── passengers/
-    ├── users/
-    ├── db/
-    ├── core/
-    └── main.py
+app/
+├── admin/
+├── authentication/
+├── bookings/
+├── flights/
+├── passengers/
+├── users/
+├── db/
+└── core/
 ```
 
 ---
 
-## Security Features
+## Documentation
 
-* JWT authentication
-* Password hashing
-* Protected endpoints
-* Ownership validation
-* Booking access restrictions
-* Passenger access restrictions
+Project documentation is maintained in the `docs` directory and includes:
 
----
-
-## Current Status
-
-Phase 5 Completed Successfully
-
-Implemented Modules:
-
-* Flights
-* Users
-* Authentication
-* Bookings
-* Passengers
+* Phase reports
+* Development logs
+* Architecture documentation
+* Security documentation
+* Roadmap
+* Changelog
 
 ---
 
-## Next Phase
+## Next Milestone
 
-Phase 6 – Booking Enhancements and Reservation Workflow
+**Phase 6.2 — Password and Security**
 
-Planned Features:
-
-* Multi-passenger booking support
-* Passenger validation improvements
-* Reservation lifecycle management
-* Advanced booking reporting
-* Additional security controls
-
----
-
-## Author
-
-Ahmed Al Mallah
-
-Computer Engineering Student
-
-Omar Tourism Internship Project
+The next phase focuses on strengthening account security through password management, account recovery, login protection, and additional security controls while continuing to improve the administration platform.

@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from app.bookings.models import Booking
 from app.db.database import get_db
 from app.bookings import schemas, service
 from app.authentication.utils import get_current_user
+from app.authentication.utils import get_current_admin
 from app.users.models import User
 
 
@@ -56,10 +57,7 @@ def cancel_booking(
 ):
     return service.cancel_booking(db, booking_id)
 
-@router.get(
-    "/{booking_id}/details",
-    response_model=schemas.BookingDetailsResponse
-)
+@router.get("/{booking_id}/details",response_model=schemas.BookingDetailsResponse)
 def get_booking_details(
     booking_id: int,
     db: Session = Depends(get_db),
@@ -70,3 +68,4 @@ def get_booking_details(
         booking_id=booking_id,
         user_id=current_user.user_id
     )
+

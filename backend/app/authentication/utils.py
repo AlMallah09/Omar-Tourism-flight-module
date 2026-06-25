@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 
 from jose import jwt
 from passlib.context import CryptContext
+from fastapi import Depends, HTTPException
+from app.users.models import User
 
 
 SECRET_KEY = "omar_tourism_secret_key"
@@ -93,3 +95,12 @@ def get_current_user(
         )
 
     return user
+
+def get_current_admin(current_user: User = Depends(get_current_user)):
+    if current_user.role != "admin":
+        raise HTTPException(
+            status_code=403,
+            detail="Admin access required"
+        )
+
+    return current_user

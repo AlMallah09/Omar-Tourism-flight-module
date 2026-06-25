@@ -5,6 +5,7 @@ from app.flights.models import Flight
 from app.users.models import User
 from app.bookings.models import Booking
 from app.passengers import models as passenger_models
+from app.admin.models import AuditLog
 
 
 Base.metadata.create_all(bind=engine)
