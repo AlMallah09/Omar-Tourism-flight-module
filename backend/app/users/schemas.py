@@ -19,6 +19,10 @@ class UserResponse(UserBase):
     role: str
     is_active: bool
     is_deleted: bool
+    must_change_password: bool
+    account_locked: bool
+    last_login: datetime | None
+    password_changed_at: datetime | None
 
     class Config:
         from_attributes = True

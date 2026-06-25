@@ -15,3 +15,10 @@ class DashboardStats(BaseModel):
 
     total_flights: int
     total_passengers: int
+
+class AdminResetPasswordRequest(BaseModel):
+    new_password: str
+
+
+class AdminResetPasswordResponse(BaseModel):
+    message: str

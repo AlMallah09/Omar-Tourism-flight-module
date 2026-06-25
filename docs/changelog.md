@@ -5,6 +5,40 @@ All notable changes to this project are documented in this file.
 The format follows a simplified version of the Keep a Changelog specification.
 
 ---
+## v0.6.2 — Password and Account Security
+
+### Added
+
+* Change password functionality.
+* Password strength validation.
+* Password history tracking.
+* Password reuse prevention.
+* Administrator password reset.
+* Forced password change after administrator reset.
+* Last login tracking.
+* Failed login attempt tracking.
+* Automatic account lockout.
+* Administrator account unlock endpoint.
+* Forgot-password workflow.
+* Password reset token model.
+* Reset password using secure tokens.
+* Single-use password reset tokens.
+* Automatic invalidation of previous reset tokens.
+* Expired password reset token cleanup endpoint.
+
+### Changed
+
+* Extended the User model with additional account security fields.
+* Improved authentication workflow with login tracking and password management.
+* Centralized password validation and security logic within the authentication service.
+
+### Security
+
+* Passwords cannot be reused from recent history.
+* Accounts are automatically locked after repeated failed login attempts.
+* Password reset tokens expire automatically.
+* Only the latest unused reset token remains valid.
+* Password-related actions are recorded in the audit log.
 
 ## v0.6.1 — Administration Foundation
 

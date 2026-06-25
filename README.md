@@ -6,7 +6,7 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 
 ## Current Version
 
-**v0.6.1**
+**v0.6.2**
 
 ---
 
@@ -32,21 +32,25 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 * ✅ Phase 4 — Authentication and Authorization
 * ✅ Phase 5 — Passenger Management System
 * ✅ Phase 6.1 — Administration Foundation
+* ✅ Phase 6.2 — Password and Account Security
 
 ### Current Development
 
-**Phase 6.2 — Password and Security**
+**Phase 6.3 — Advanced Administration**
 
 Planned features include:
 
-* Change Password
-* Forgot Password
-* Administrator Password Reset
-* Forced Password Change
-* Failed Login Tracking
-* Account Lockout
-* Last Login Tracking
-* Additional Account Security Features
+* Pagination across administrative endpoints.
+* Sorting support for users, bookings, flights, and passengers.
+* Advanced user search and filtering.
+* Advanced booking search and filtering.
+* Flight search and filtering enhancements.
+* Passenger search and filtering.
+* Passenger manifest generation.
+* Dashboard enhancements with richer administrative insights.
+* Service-layer refactoring where appropriate.
+* Additional administrative quality-of-life improvements.
+
 
 ---
 
@@ -81,6 +85,14 @@ Planned features include:
 * JWT authentication
 * Password hashing with bcrypt
 * Protected API endpoints
+* Change password
+* Forgot password
+* Password reset using secure tokens
+* Password history
+* Password reuse prevention
+* Forced password change
+* Account lockout
+* Last login tracking
 
 ### Administration
 

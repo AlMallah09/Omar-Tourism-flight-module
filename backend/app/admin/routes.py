@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.db.database import get_db
-from app.authentication.utils import get_current_admin
+from app.authentication.utils import get_current_admin, hash_password, verify_password 
 
-from app.admin.schemas import DashboardStats
+from app.admin.schemas import AdminResetPasswordRequest, AdminResetPasswordResponse, DashboardStats
 from app.admin import services
 
 from app.users.models import User
@@ -17,6 +17,11 @@ from app.bookings.models import Booking
 from app.bookings import schemas as booking_schemas
 from app.bookings import service as booking_service
 
+from app.authentication.services import validate_password_strength
+from app.authentication.models import PasswordHistory
+
+from app.authentication import services as auth_services
+
 router = APIRouter(
     prefix="/admin",
     tags=["Admin"]
@@ -28,6 +33,14 @@ def get_dashboard(
     current_admin: User = Depends(get_current_admin)
 ):
     return services.get_dashboard_stats(db)
+
+@router.get("/users", response_model=list[UserResponse])
+def get_all_users(
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    users = db.query(User).all()
+    return users
 
 
 @router.get("/users/search", response_model=list[UserResponse])
@@ -281,3 +294,109 @@ def restore_booking_admin(
     
     return booking
 
+@router.put("/users/{user_id}/reset-password",response_model=AdminResetPasswordResponse)
+def reset_user_password_admin(
+    user_id: int,
+    password_data: AdminResetPasswordRequest,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    user = db.query(User).filter(User.user_id == user_id).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    validate_password_strength(password_data.new_password)
+
+    password_history = (
+    db.query(PasswordHistory)
+    .filter(PasswordHistory.user_id == user.user_id)
+    .order_by(PasswordHistory.changed_at.desc())
+    .limit(5)
+    .all()
+)
+
+    for old_password in password_history:
+        if verify_password(password_data.new_password, old_password.password_hash):
+            raise HTTPException(
+                status_code=400,
+                detail="You cannot reuse a previously used password."
+        )
+    
+    history = PasswordHistory(
+    user_id=user.user_id,
+    password_hash=user.password_hash
+)
+
+    db.add(history)
+
+    user.password_hash = hash_password(password_data.new_password)
+    user.must_change_password = True
+    user.failed_login_attempts = 0
+    user.account_locked = False
+
+    db.commit()
+    db.refresh(user)
+
+    services.create_audit_log(
+        db=db,
+        admin_id=current_admin.user_id,
+        action="ADMIN_RESET_PASSWORD",
+        target_type="User",
+        target_id=user.user_id,
+        description=f"Admin reset password for user: {user.email}"
+    )
+
+    return {"message": "Password reset successfully. User must change password on next login."}
+
+@router.put("/users/{user_id}/unlock", response_model=UserResponse)
+def unlock_user_account_admin(
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    user = db.query(User).filter(User.user_id == user_id).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    user.account_locked = False
+    user.failed_login_attempts = 0
+
+    db.commit()
+    db.refresh(user)
+
+    services.create_audit_log(
+        db=db,
+        admin_id=current_admin.user_id,
+        action="UNLOCK_USER_ACCOUNT",
+        target_type="User",
+        target_id=user.user_id,
+        description=f"Unlocked user account: {user.email}"
+    )
+
+    return user
+
+@router.delete("/password-reset-tokens/expired")
+def cleanup_expired_reset_tokens_admin(
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    result = auth_services.cleanup_expired_reset_tokens(db)
+
+    services.create_audit_log(
+        db=db,
+        admin_id=current_admin.user_id,
+        action="CLEANUP_EXPIRED_RESET_TOKENS",
+        target_type="PasswordResetToken",
+        target_id=0,
+        description="Cleaned expired password reset tokens."
+    )
+
+    return result
