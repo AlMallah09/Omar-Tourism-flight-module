@@ -18,6 +18,7 @@ class BookingResponse(BookingBase):
     booking_date: datetime
     total_price: float
     booking_status: str
+    payment_status: str
 
     class Config:
         from_attributes = True

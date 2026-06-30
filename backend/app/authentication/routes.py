@@ -5,7 +5,7 @@ from datetime import datetime
 from app.db.database import get_db
 from app.users.models import User
 from app.users.schemas import UserResponse
-from app.authentication.utils import get_current_admin, get_current_user
+from app.authentication.utils import admin_required, get_current_admin, get_current_user
 from app.authentication.utils import verify_password, create_access_token
 from app.authentication import schemas
 from app.bookings.models import Booking
@@ -85,7 +85,7 @@ def get_all_users(
 def change_password(
     password_data: schemas.ChangePasswordRequest,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(admin_required)
 ):
         return auth_services.change_password(
         db=db,

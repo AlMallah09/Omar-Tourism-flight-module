@@ -1,31 +1,48 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
 from app.db.database import get_db
-from app.authentication.utils import get_current_admin, hash_password, verify_password 
-
-from app.admin.schemas import AdminResetPasswordRequest, AdminResetPasswordResponse, DashboardStats
+from app.authentication.utils import (
+    admin_required,
+    get_current_admin,
+    hash_password,
+    verify_password,
+)
+from app.authentication.models import PasswordHistory
+from app.authentication import services as auth_services
+from app.authentication.services import validate_password_strength
 from app.admin import services
-
+from app.admin.schemas import (
+    AdminResetPasswordRequest,
+    AdminResetPasswordResponse,
+    DashboardStats,
+    BookingAdminFilter,
+    PaymentStatusUpdate,
+    BookingStatusUpdate,
+    FlightAdminFilter,
+    RecentActivity,
+    AuditLogResponse,
+)
 from app.users.models import User
-from app.bookings.models import Booking
-from app.flights.models import Flight
-from app.passengers.models import Passenger
 from app.users.schemas import UserResponse
-from app.bookings import schemas, service
 from app.bookings.models import Booking
 from app.bookings import schemas as booking_schemas
-from app.bookings import service as booking_service
+from app.bookings.schemas import BookingResponse
+from app.bookings import services as booking_service
+from app.flights.models import Flight
+from app.passengers.models import Passenger
 
-from app.authentication.services import validate_password_strength
-from app.authentication.models import PasswordHistory
-
-from app.authentication import services as auth_services
 
 router = APIRouter(
     prefix="/admin",
     tags=["Admin"]
 )
+
+@router.get("/system-health")
+def system_health(
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(admin_required)
+):
+    return services.get_system_health(db)
 
 @router.get("/dashboard", response_model=DashboardStats)
 def get_dashboard(
@@ -33,6 +50,22 @@ def get_dashboard(
     current_admin: User = Depends(get_current_admin)
 ):
     return services.get_dashboard_stats(db)
+
+@router.get("/audit-logs", response_model=list[AuditLogResponse])
+def audit_logs(
+    page: int = 1,
+    page_size: int = 20,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(admin_required)
+):
+    return services.get_audit_logs(db, page, page_size)
+
+@router.get("/recent-activity", response_model=RecentActivity)
+def recent_activity(
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(admin_required)
+):
+    return services.get_recent_activity(db)
 
 @router.get("/users", response_model=list[UserResponse])
 def get_all_users(
@@ -253,8 +286,17 @@ def get_booking_by_id_admin(
             status_code=404,
             detail="Booking not found"
         )
-
     return booking
+
+@router.post("/bookings/filter", response_model=list[BookingResponse])
+def filter_bookings(
+    filters: BookingAdminFilter,
+    page: int = 1,
+    page_size: int = 20,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(admin_required)
+):
+    return services.filter_bookings_admin(db, filters, page, page_size)
 
 @router.put("/bookings/{booking_id}/cancel", response_model=booking_schemas.BookingResponse)
 def cancel_booking_admin(
@@ -290,9 +332,34 @@ def restore_booking_admin(
     target_type="Booking",
     target_id=booking.booking_id,
     description=f"Restored booking ID {booking.booking_id}"
-)
-    
+) 
     return booking
+
+@router.put("/bookings/{booking_id}/payment-status", response_model=BookingResponse)
+def update_payment_status(
+    booking_id: int,
+    status_update: PaymentStatusUpdate,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(admin_required)
+):
+    return services.update_booking_payment_status_admin(
+        db,
+        booking_id,
+        status_update.payment_status
+    )
+
+@router.put("/bookings/{booking_id}/status", response_model=BookingResponse)
+def update_booking_status(
+    booking_id: int,
+    status_update: BookingStatusUpdate,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(admin_required)
+):
+    return services.update_booking_status_admin(
+        db,
+        booking_id,
+        status_update.booking_status
+    )
 
 @router.put("/users/{user_id}/reset-password",response_model=AdminResetPasswordResponse)
 def reset_user_password_admin(

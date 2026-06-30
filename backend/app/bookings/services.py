@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-
 from app.bookings import models, schemas
 from app.flights.models import Flight
 from app.bookings.models import Booking
+from app.core.constants import BookingStatus, PaymentStatus, FlightStatus
 
 
 def create_booking(db: Session, booking: schemas.BookingCreate, user_id: int):
@@ -14,7 +14,7 @@ def create_booking(db: Session, booking: schemas.BookingCreate, user_id: int):
     if not flight:
         raise HTTPException(status_code=404, detail="Flight not found")
 
-    if flight.status.lower() == "cancelled":
+    if flight.status.lower() == BookingStatus.CANCELLED:
         raise HTTPException(status_code=400, detail="Cannot book a cancelled flight")
 
     if flight.seats_available < booking.number_of_passengers:
@@ -23,12 +23,13 @@ def create_booking(db: Session, booking: schemas.BookingCreate, user_id: int):
     total_price = flight.price * booking.number_of_passengers
 
     db_booking = models.Booking(
-        user_id=user_id,
-        flight_id=booking.flight_id,
-        number_of_passengers=booking.number_of_passengers,
-        total_price=total_price,
-        booking_status="confirmed"
-    )
+    user_id=user_id,
+    flight_id=booking.flight_id,
+    number_of_passengers=booking.number_of_passengers,
+    total_price=total_price,
+    booking_status=BookingStatus.CONFIRMED,
+    payment_status=PaymentStatus.UNPAID
+)
 
     flight.seats_available -= booking.number_of_passengers
 
@@ -54,7 +55,7 @@ def cancel_booking(db: Session, booking_id: int):
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    if booking.booking_status == "cancelled":
+    if booking.booking_status == BookingStatus.CANCELLED:
         raise HTTPException(status_code=400, detail="Booking is already cancelled")
 
     flight = db.query(Flight).filter(
@@ -62,7 +63,7 @@ def cancel_booking(db: Session, booking_id: int):
     ).first()
 
     flight.seats_available += booking.number_of_passengers
-    booking.booking_status = "cancelled"
+    booking.booking_status = BookingStatus.CANCELLED
 
     db.commit()
     db.refresh(booking)
@@ -80,7 +81,7 @@ def restore_booking(db: Session, booking_id: int):
             detail="Booking not found"
         )
 
-    if booking.booking_status != "cancelled":
+    if booking.booking_status != BookingStatus.CANCELLED:
         raise HTTPException(
             status_code=400,
             detail="Booking is not cancelled"
@@ -102,7 +103,7 @@ def restore_booking(db: Session, booking_id: int):
             detail="No seats available to restore this booking"
         )
 
-    booking.booking_status = "confirmed"
+    booking.booking_status = BookingStatus.CONFIRMED
     flight.seats_available -= 1
 
     db.commit()
