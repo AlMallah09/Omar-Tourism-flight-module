@@ -1,33 +1,90 @@
+# ===========================
 # Python
-.venv/
+# ===========================
+
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# Environment variables
+# ===========================
+# Virtual Environment
+# ===========================
+
+venv/
+.venv/
+env/
+ENV/
+
+# ===========================
+# Environment Variables
+# ===========================
+
 .env
+.env.*
 
-# Editor
+# ===========================
+# IDE
+# ===========================
+
 .vscode/
+.idea/
 
-# OS
+# ===========================
+# Python Cache
+# ===========================
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+
+# ===========================
+# Coverage
+# ===========================
+
+.coverage
+htmlcov/
+
+# ===========================
+# Build Files
+# ===========================
+
+build/
+dist/
+*.egg-info/
+
+# ===========================
+# Logs
+# ===========================
+
+*.log
+
+# ===========================
+# Database
+# ===========================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# ===========================
+# PostgreSQL Dumps
+# ===========================
+
+*.sql
+*.dump
+*.backup
+
+# ===========================
+# Operating System Files
+# ===========================
+
 .DS_Store
 Thumbs.db
 
-# Python caches
-.pytest_cache/
-.mypy_cache/
+# ===========================
+# Temporary Files
+# ===========================
 
-# Build
-build/
-dist/
-
-# IDE
-.idea/
-
-# Database
-*.db
-
-# Environment
-.env.*
+*.tmp
+*.temp
