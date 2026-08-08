@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
 
@@ -10,16 +10,17 @@ class FlightBase(BaseModel):
     departure_time: datetime
     arrival_time: datetime
     price: float
-    seats_available: int
     status: str
 
 
 class FlightCreate(FlightBase):
-    pass
+    total_seats: int = Field(gt=0)
 
 
 class FlightResponse(FlightBase):
     flight_id: int
+    total_seats: int
+    seats_available: int
 
     class Config:
         from_attributes = True
@@ -31,5 +32,5 @@ class FlightUpdate(BaseModel):
     departure_time: Optional[datetime] = None
     arrival_time: Optional[datetime] = None
     price: Optional[float] = None
-    seats_available: Optional[int] = None
+    total_seats: Optional[int] = Field(default=None, gt=0)
     status: Optional[str] = None

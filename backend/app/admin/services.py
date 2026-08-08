@@ -10,6 +10,8 @@ from app.admin.schemas import DashboardStats
 from app.admin.models import AuditLog
 from app.admin.schemas import BookingAdminFilter
 from app.core.constants import BookingStatus, PaymentStatus, FlightStatus
+from sqlalchemy import func
+
 
 def get_system_health(db: Session):
     try:

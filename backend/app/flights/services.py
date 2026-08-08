@@ -76,7 +76,8 @@ def create_flight(db: Session, flight: schemas.FlightCreate):
         departure_time=flight.departure_time,
         arrival_time=flight.arrival_time,
         price=flight.price,
-        seats_available=flight.seats_available,
+        total_seats=flight.total_seats,
+        seats_available=flight.total_seats,
         status=flight.status
     )
 
@@ -203,6 +204,25 @@ def update_flight(
 
     update_data = flight_update.model_dump(exclude_unset=True)
 
+    # Handle total seat capacity separately
+    if "total_seats" in update_data:
+        new_total_seats = update_data.pop("total_seats")
+
+        booked_seats = flight.total_seats - flight.seats_available
+
+        if new_total_seats < booked_seats:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"Total seats cannot be lower than the number of "
+                    f"already booked seats ({booked_seats})"
+                )
+            )
+
+        flight.total_seats = new_total_seats
+        flight.seats_available = new_total_seats - booked_seats
+
+    # Update all other fields normally
     for key, value in update_data.items():
         setattr(flight, key, value)
 
