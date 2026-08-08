@@ -6,7 +6,7 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 
 ## Current Version
 
-**v0.6.3**
+**v0.6.4**
 
 ---
 
@@ -34,24 +34,29 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 * ✅ Phase 6.1 – Administration Foundation
 * ✅ Phase 6.2 – Password and Account Security
 * ✅ Phase 6.3 – Advanced Administration
+* ✅ Phase 6.4 – Analytics and Business Intelligence
 
 ---
 
 ## Current Development
 
-**Phase 6.4 – Analytics & Business Intelligence**
+### Current Development
+
+**Phase 6.5 – Reports and Exports**
 
 Planned features include:
 
-* Revenue analytics and reporting.
-* Booking analytics and operational statistics.
-* Flight performance analytics.
-* Customer activity analytics.
-* Destination and route analytics.
-* Administrative dashboard KPIs.
-* Business intelligence endpoints.
-* Reporting enhancements.
-* Additional production-readiness improvements.
+* Administrative report generation.
+* Booking reports.
+* Flight reports.
+* Customer reports.
+* Revenue reports.
+* Analytics-based business reports.
+* CSV export support.
+* Structured downloadable datasets.
+* Date-range filtering for reports.
+* Reusable reporting service architecture.
+* Administrator-only report and export access.
 
 ---
 
@@ -60,13 +65,14 @@ Planned features include:
 #### Flight Management
 
 * Flight CRUD operations
+* Total flight capacity management
+* Automatic seat availability initialization
 * Seat availability management
+* Safe flight capacity updates
 * Flight pricing
 * Flight status management
-* Soft flight cancellation
-* Flight restoration
+* Soft flight cancellation and restoration
 * Advanced flight filtering
-* Public flight visibility control
 
 #### Booking Management
 
@@ -127,6 +133,24 @@ Planned features include:
 * Account enable and disable
 * User search
 
+#### Analytics and Business Intelligence
+
+* Revenue analytics
+* Booking analytics
+* Flight analytics
+* Customer analytics
+* Customer growth tracking
+* Destination analytics
+* Origin analytics
+* Route performance analytics
+* Monthly booking and revenue trends
+* Flight performance analytics
+* Flights-without-bookings analysis
+* Flight occupancy and seat utilization
+* Consolidated analytics dashboard
+* Key Performance Indicator (KPI) analytics
+* Administrator-protected analytics endpoints
+
 ---
 
 ## Project Structure
@@ -134,6 +158,7 @@ Planned features include:
 ```text
 app/
 ├── admin/
+├── analytics/
 ├── authentication/
 ├── bookings/
 ├── flights/
@@ -160,6 +185,8 @@ Project documentation is maintained in the `docs` directory and includes:
 
 ## Next Milestone
 
-**Phase 6.4 – Analytics & Business Intelligence**
+## Next Milestone
 
-The next phase focuses on transforming operational data into business intelligence by introducing revenue analytics, booking statistics, customer insights, destination reporting, flight performance metrics, and dashboard KPIs to support administrative decision-making.
+**Phase 6.5 – Reports and Exports**
+
+The next phase will introduce structured reporting and data export capabilities built on top of the existing administration and analytics layers. Operational and analytical information will be made available through reusable reporting services and downloadable formats for business use, record keeping, and external analysis.

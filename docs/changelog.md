@@ -5,6 +5,86 @@ All notable changes to this project are documented in this file.
 The format follows a simplified version of the Keep a Changelog specification.
 
 ---
+
+## v0.6.4 – Analytics and Business Intelligence
+
+### Added
+
+* Dedicated `analytics` module.
+* Revenue analytics.
+* Booking analytics.
+* Flight analytics.
+* Customer analytics.
+* Customer growth tracking.
+* Destination and origin analytics.
+* Route performance analytics.
+* Monthly booking and revenue trends.
+* Flight performance analytics.
+* Flights-without-bookings analysis.
+* Flight occupancy and seat utilization analytics.
+* Consolidated analytics dashboard endpoint.
+* Key Performance Indicator (KPI) endpoint.
+* Total flight capacity tracking through `total_seats`.
+
+### Changed
+
+* Separated analytics functionality from the administration module.
+* Extended the flight model to distinguish total capacity from available seats.
+* Updated flight creation to initialize `seats_available` automatically from `total_seats`.
+* Updated flight capacity changes to preserve already booked seats.
+* Removed direct modification of `seats_available` from normal flight updates.
+* Excluded administrative accounts from customer-specific analytics.
+* Expanded the backend with business intelligence capabilities for future dashboard integration.
+
+### Security
+
+* Restricted analytics endpoints to authorized administrators.
+* Prevented flight capacity from being reduced below already booked seats.
+* Preserved booking and seat inventory consistency during flight capacity changes.
+
+---
+
+## v0.6.3 – Advanced Administration
+
+### Added
+
+* Administrator-only flight creation and updates.
+* Flight soft cancellation and restoration.
+* Administrative access to all flight records.
+* Advanced flight filtering.
+* Advanced booking filtering.
+* Booking status management.
+* Payment status management.
+* Booking refund functionality.
+* Expanded administrative dashboard statistics.
+* Recent activity endpoint.
+* System health endpoint.
+* Audit log retrieval endpoint.
+* Pagination for administrative endpoints.
+* Centralized application status constants.
+* Enum validation for booking, payment, and flight statuses.
+* Standardized administrative API responses.
+
+### Changed
+
+* Expanded the administration module with advanced flight and booking management.
+* Replaced permanent flight deletion with soft cancellation.
+* Prevented cancelled flights from appearing in public flight listings.
+* Improved administrative filtering and request validation.
+* Centralized repeated status values to improve maintainability.
+* Refined administrative API responses for consistency.
+* Cleaned temporary debugging code and unused imports.
+
+### Security
+
+* Restricted flight creation and modification to authorized administrators.
+* Centralized administrative authorization using `admin_required`.
+* Enforced valid booking and payment status combinations.
+* Added validation for administrative flight and booking operations.
+
+---
+
+
 ## v0.6.2 — Password and Account Security
 
 ### Added
