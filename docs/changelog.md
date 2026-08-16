@@ -4,6 +4,35 @@ All notable changes to this project are documented in this file.
 
 The format follows a simplified version of the Keep a Changelog specification.
 
+## v0.6.5 – Reports and Exports
+
+### Added
+- Dedicated reports module.
+- Administrator-only Excel report endpoints.
+- Booking Excel reports with optional start-date and end-date filtering.
+- Flight Excel reports.
+- Customer Excel reports with booking counts and booking value totals.
+- Revenue Excel reports.
+- Combined business management workbook.
+- Executive Summary worksheet.
+- Business Analytics worksheet.
+- Reporting-period support for combined reports.
+- Date-range validation.
+- Flight occupancy and capacity reporting.
+- Timezone-safe Excel datetime conversion.
+- Reusable Excel formatting and workbook utilities.
+- `openpyxl` dependency for spreadsheet generation.
+
+### Changed
+- Standardized business report output around Excel `.xlsx` files.
+- Replaced the initial CSV export implementation with formatted Excel reporting.
+- Simplified reporting-period input from full timestamps to standard dates.
+- Applied reporting periods consistently across applicable business report calculations.
+- Consolidated repeated workbook formatting logic into reusable reporting utilities.
+
+### Security
+- Restricted all reporting and export endpoints to authenticated administrators.
+
 ---
 
 ## v0.6.4 – Analytics and Business Intelligence

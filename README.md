@@ -6,7 +6,7 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 
 ## Current Version
 
-**v0.6.4**
+**v0.6.5**
 
 ---
 
@@ -19,6 +19,7 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 * Pydantic
 * JWT Authentication
 * Bcrypt Password Hashing
+* openpyxl
 
 ---
 
@@ -35,28 +36,17 @@ A modern flight management backend built with **FastAPI** and **PostgreSQL**. Th
 * ✅ Phase 6.2 – Password and Account Security
 * ✅ Phase 6.3 – Advanced Administration
 * ✅ Phase 6.4 – Analytics and Business Intelligence
+* ✅ Phase 6.5 - Reports and Exports
 
 ---
 
-## Current Development
-
 ### Current Development
 
-**Phase 6.5 – Reports and Exports**
+## Phase 6.6 – Production Readiness
 
-Planned features include:
+The current development phase focuses on preparing the backend for controlled deployment and production-oriented operation.
 
-* Administrative report generation.
-* Booking reports.
-* Flight reports.
-* Customer reports.
-* Revenue reports.
-* Analytics-based business reports.
-* CSV export support.
-* Structured downloadable datasets.
-* Date-range filtering for reports.
-* Reusable reporting service architecture.
-* Administrator-only report and export access.
+Planned work includes database migrations, Docker-based deployment, configuration management, structured logging, API versioning, security improvements, centralized exception handling, and environment-specific settings.
 
 ---
 
@@ -151,6 +141,21 @@ Planned features include:
 * Key Performance Indicator (KPI) analytics
 * Administrator-protected analytics endpoints
 
+#### Reports and Exports
+
+- Administrator-only Excel report generation
+- Booking reports with optional date-range filtering
+- Flight operational reports
+- Customer activity and booking value reports
+- Revenue reports
+- Combined business management workbook
+- Executive summary reporting
+- Business analytics reporting
+- Reporting-period support
+- Flight occupancy and capacity reporting
+- Excel formatting and automatic column sizing
+- Timezone-safe spreadsheet datetime handling
+
 ---
 
 ## Project Structure
@@ -161,11 +166,12 @@ app/
 ├── analytics/
 ├── authentication/
 ├── bookings/
+├── core/
+├── db/
 ├── flights/
 ├── passengers/
-├── users/
-├── db/
-└── core/
+├── reports/
+└── users/
 ```
 
 ---
@@ -185,8 +191,4 @@ Project documentation is maintained in the `docs` directory and includes:
 
 ## Next Milestone
 
-## Next Milestone
-
-**Phase 6.5 – Reports and Exports**
-
-The next phase will introduce structured reporting and data export capabilities built on top of the existing administration and analytics layers. Operational and analytical information will be made available through reusable reporting services and downloadable formats for business use, record keeping, and external analysis.
+**Phase 6.6 – Production Readiness**

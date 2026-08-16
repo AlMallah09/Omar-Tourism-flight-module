@@ -160,7 +160,7 @@
 - Reusable reporting services
 - Administrator-only reporting access
 
-**Status:** Next Phase
+**Status:** Completed
 
 ### Phase 6.6: Production Readiness
 
@@ -177,7 +177,7 @@
 - Separate development and production settings
 - Prepare deployment configuration
 
-**Status:** Planned
+**Status:** Next Phase
 
 ### Phase 6.7: Automated Testing and CI/CD
 
@@ -295,3 +295,14 @@
 - Final system verification
 
 **Status:** Planned
+
+
+## Internship Delivery Scope
+
+The project roadmap was originally planned around a 16-week internship period and was designed to continue from the backend foundation through production preparation, client applications, administration interfaces, and external integrations.
+
+The internship schedule was subsequently reduced from 16 weeks to 12 weeks. The available implementation period was therefore shortened by four weeks, and the full development roadmap could no longer reasonably be completed within the revised internship timeframe.
+
+Development priorities were adjusted toward completing the core backend platform and the highest-value operational features. The remaining roadmap phases are retained as planned future development so that the original system direction and continuation path remain clearly documented.
+
+Phase 6.6 represents the intended final development phase within the internship period. Later phases remain part of the planned evolution of the Omar Tourism platform.

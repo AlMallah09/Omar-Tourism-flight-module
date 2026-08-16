@@ -8,6 +8,7 @@ from app.passengers import models as passenger_models
 from app.passengers.routes import router as passengers_router
 from app.admin.routes import router as admin_router
 from app.analytics.routes import router as analytics_router
+from app.reports.routes import router as reports_router 
 
 app = FastAPI(
     title="Omar Tourism Flight Module API",
@@ -22,6 +23,7 @@ app.include_router(authentication_router)
 app.include_router(passengers_router)
 app.include_router(admin_router)
 app.include_router(analytics_router)
+app.include_router(reports_router)
 
 @app.get("/")
 def root():
