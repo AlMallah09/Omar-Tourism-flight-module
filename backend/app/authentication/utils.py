@@ -9,7 +9,7 @@ from jose import jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException
 from app.users.models import User
-
+from app.core.config import settings
 
 SECRET_KEY = "omar_tourism_secret_key"
 ALGORITHM = "HS256"
@@ -52,7 +52,7 @@ def create_access_token(data: dict):
 
 
 oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl="/authentication/login"
+    tokenUrl=f"{settings.API_V1_PREFIX}/authentication/login"
 )
 
 
