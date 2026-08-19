@@ -4,6 +4,53 @@ All notable changes to this project are documented in this file.
 
 The format follows a simplified version of the Keep a Changelog specification.
 
+## v0.6.6 – Production Readiness
+
+### Added
+- Alembic database migration framework.
+- Existing-schema baseline migration.
+- Database revision tracking through `alembic_version`.
+- Fresh-database initialization and Alembic stamping.
+- Centralized environment-backed application configuration.
+- Environment configuration for JWT security, API versioning, logging, CORS, and trusted hosts.
+- `.env.example` and Docker environment example configuration.
+- Global HTTP exception handling.
+- Global request-validation handling.
+- Controlled internal server-error responses.
+- Structured JSON-style application logging.
+- Request IDs and `X-Request-ID` response headers.
+- Request execution-time logging.
+- Configurable CORS middleware.
+- Trusted-host validation.
+- HTTP security response headers.
+- `/api/v1` API version namespace.
+- Multi-stage FastAPI Docker image.
+- Docker Compose environment for FastAPI and PostgreSQL.
+- PostgreSQL container health checking.
+- Persistent PostgreSQL Docker volume.
+- Database initialization before API startup.
+- Docker-specific environment configuration.
+- Container runtime dependency verification.
+
+### Changed
+- Moved JWT secret, algorithm, and access-token expiration from source code into environment configuration.
+- Updated JWT expiration timestamps to timezone-aware UTC values.
+- Updated OAuth2 authentication configuration for the versioned API.
+- Standardized error responses across the backend.
+- Centralized repeated runtime configuration in `app/core`.
+- Updated application startup to support database initialization and migration before Uvicorn startup.
+- Expanded `requirements.txt` to represent dependencies required by a clean deployment environment.
+
+### Security
+- Removed the JWT signing secret from application source code.
+- Added trusted-host protection.
+- Added configurable CORS restrictions.
+- Added `X-Content-Type-Options`, `X-Frame-Options`, and `Referrer-Policy` response headers.
+- Prevented unexpected internal exception details from being exposed directly to API clients.
+- Kept authentication tokens, passwords, database credentials, and application secrets out of structured request logs.
+
+---
+
 ## v0.6.5 – Reports and Exports
 
 ### Added
